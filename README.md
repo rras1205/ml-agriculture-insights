@@ -6,21 +6,16 @@ The goal of the project is to architect a system that is able to assess how vari
 
 
 ## Dataset 
-The dataset that was chosen consists of agricultural records that specifically have key environmental management, as well as production-related factors across the various geographic regions across the years. It makes it easy to carry out analysis of how the external variables can affect the crop yields over time. 
 
-The data is time-series and multiregional, meaning that it covers multiple years and countries and hence makes it suitable for a temporal and spatial trend analysis. Additionally, there are multiple independent variables and one dependent variable. The data is also structured and ready to use in regression models. 
+**Environmental & Management Data** - 
+* Crop yield data is provided, which is the main outcome that we want to predict and analyze for any relationships. 
+* The environmental variables (avg temp and rainfall, etc.) provided.
+* Management variables (pesticide usage, etc.) are provided.  
+These factors allow us to evaluate how both natural conditions and farming strategies can impact crop production. 
 
-### Justification of the Dataset
-
-Hence, the selected dataset is extremely relevant and very suited for the objectives of the project - this is because it aims to assess what impact environmental and management factors can have on crop production across the multiple geographic regions highlighted in the dataset. 
- 
-**Environmental & Management Data** - Crop yield data is provided, which is the main outcome that we want to predict and analyze for any relationships. 
-The environmental variables, like average temperature and rainfall, are also provided, and these factors are well known to impact agricultural productivity. 
-There is also management input such as pesticide usage, and this highlights the impact humans can have in technological advancements. 
-These factors allow us to evaluate how both natural conditions and farming strategies can impact crop production, and the core requirement of assessing environmental and management factors is effectively satisfied. 
-
-**Geographical and Temporal Data** - The dataset spans multiple countries (‘Area’), enabling cross-regional comparisons of the crop performances and the farming practices. 
-Furthermore, it spans multiple years (Year), and the time-series data would allow us to assess what trends there are, and the impacts of climate change on production, and highlight how effective certain strategies are over time. 
+**Geographical and Temporal Data** - 
+* The dataset spans multiple countries (‘Area’), enabling cross-regional comparisons of the crop performances and the farming practices. 
+* spans multiple years (Year), and the time-series data would allow us to assess what trends there are (impacts of climate change/management strategies over time). 
 These factors contribute to making the dataset ideal to build a generalizable model where it can work across multiple regions and can be effectively used to predict future outcomes. 
 
 **Machine Learning Support and Parallel Processing** - The dataset is structured and cleaned, which allows it to be used in machine learning models and very efficiently so. 
