@@ -1,7 +1,8 @@
 # ml-agriculture-insights
 An investigation into the various environmental and management factors influencing crop yield.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ml-agriculture-insights-mwtcsmvxe9nrrx7bpszwey.streamlit.app)
+### Interactive Streamlit app for crop yield prediction using a trained Random Forest model:
+### [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ml-agriculture-insights-mwtcsmvxe9nrrx7bpszwey.streamlit.app)
 
 ## Goal 
 The goal of the project is to architect a system that is able to assess how various environmental as well as management factors can influence crop production across the different geographic regions. Because of the increasing global demand for food security on top of the impact that climate change can have on agriculture, there is a relationship in these areas, and it is important to understand exactly what and to visualize these connections. Hence, we can use machine learning and parallel computing techniques to build a system that is able to identify which of the environmental inputs like rainfall, temperature, humidity, etc., as well as the management practices (pesticide usage, etc.) as per the dataset, would most significantly affect the crop yield outcomes in the different locations and over time.
