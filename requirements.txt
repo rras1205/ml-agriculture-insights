@@ -4,4 +4,4 @@ streamlit
 matplotlib
 seaborn
 numpy
-altair
+altair==4.2.2
