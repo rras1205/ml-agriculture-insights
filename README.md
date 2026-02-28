@@ -1,37 +1,220 @@
 # ml-agriculture-insights
 An investigation into the various environmental and management factors influencing crop yield.
 
+## Deployed Machine Learning Web App for Crop Yield Prediction 
+An end-to-end machine learning system that predicts agricultural crop yield using cross-validated model comparison and hyperparameter tuning. The final tuned Random Forest model is deployed via Streamlit for inference.
+
 ### Interactive Streamlit app for crop yield prediction using a trained Random Forest model:
 ### [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ml-agriculture-insights-mwtcsmvxe9nrrx7bpszwey.streamlit.app)
 
-## Goal 
-The goal of the project is to architect a system that is able to assess how various environmental as well as management factors can influence crop production across the different geographic regions. Because of the increasing global demand for food security on top of the impact that climate change can have on agriculture, there is a relationship in these areas, and it is important to understand exactly what and to visualize these connections. Hence, we can use machine learning and parallel computing techniques to build a system that is able to identify which of the environmental inputs like rainfall, temperature, humidity, etc., as well as the management practices (pesticide usage, etc.) as per the dataset, would most significantly affect the crop yield outcomes in the different locations and over time.
+### Streamlit App
+
+| Yield Prediction | Feature Importance |
+|------------------|--------------------|
+| ![Yield Prediction](screenshots/predicted_yield_page.png) | ![Load Preset](screenshots/feature_importance_page.png) |
 
 
-## Dataset 
+## What This Project Demonstrates
 
-**Environmental & Management Data** - 
-* Crop yield data is provided, which is the main outcome that we want to predict and analyze for any relationships. 
-* The environmental variables (avg temp and rainfall, etc.) provided.
-* Management variables (pesticide usage, etc.) are provided.  
-These factors allow us to evaluate how both natural conditions and farming strategies can impact crop production. 
+* Structured end-to-end ML workflow
+* Exploratory Data Analysis (EDA)
+* Multiple regression model comparison
+* K-Fold cross-validation
+* Hyperparameter tuning with GridSearchCV
+* Model serialization for production
+* Deployment using Streamlit
 
-**Geographical and Temporal Data** - 
-* The dataset spans multiple countries (‘Area’), enabling cross-regional comparisons of the crop performances and the farming practices. 
-* spans multiple years (Year), and the time-series data would allow us to assess what trends there are (impacts of climate change/management strategies over time). 
-These factors contribute to making the dataset ideal to build a generalizable model where it can work across multiple regions and can be effectively used to predict future outcomes. 
+This project goes beyond notebook experimentation and delivers a deployed ML application.
 
-**Machine Learning Support and Parallel Processing** - The dataset is structured and cleaned, which allows it to be used in machine learning models and very efficiently so. 
-Numerical and categorical features are included which means that it supports diverse preprocessing and encoding techniques. 
+## Exploratory Data Analysis
 
-**Data Volume and Quality** - The data contains over 28,000 observations, which hence provides the sufficient data for training robust machine learning models and hence reduces the risk of overfitting. 
-The initial data exploration shows that there is no missing value or duplicates which speeds up the process of training the models and streamlines the workflow.
+Initial data exploration was conducted to understand feature relationships and guide model development.
 
-**Features Richness** - The dataset includes specific crop types (‘item’) in addition to the environmental and management features, and hence allows for more detailed insights on how different crops can respond to the varying conditions. 
-Thus, the granularity would support the development of crop-specific strategies for yield improvement rather than a model that is more towards ‘one-size-fits-all’. 
+Key objectives:
+* Examine yield distribution
+* Identify correlations between environmental variables and yield
+* Detect potential multicollinearity
+* Inform model selection decisions
 
-**Predictive and Analytical Value** - The dataset has a well-defined target variable (hg/ha_yield) and the relevant features which makes it ideal for building predictive models like Random Forest Regressors. 
-These models would allow us to forecast the crop yields under the varying environmental and management conditions which is valuable for proactive agricultural planning. 
+| Correlation Matrix | 
+|--------------------|
+| ![Correlation Matrix](screenshots/correlation_matrix.png) | 
 
-Combined, these points can conform very well into real-world applications. Specifically, the dataset using real-world agricultural metrics makes it very interpretable to domain experts (eg. yields in hg/ha, pesticide use in tonnes), and makes it very useful for decision-making in agricultural policy, resource planning, or research in general. 
+The correlation matrix highlights the strength and direction of relationships between predictors and crop yield, providing insight into feature influence before model training.
+
+## SQL-Based Analytical Layer
+To demonstrate structured data analysis beyond pandas operations, the dataset was loaded into an in-memory SQLite database.
+
+The DataFrame was converted into a relational table (crop_yield_data) and queried using SQL to perform advanced analytical tasks.
+
+### SQL Analyses Performed
+* Null value validation across all columns
+* Distinct counts for categorical variables
+* Top 5 areas with highest average yield for Maize
+* Year-over-year yield change for Wheat in India (using window functions with LAG)
+* Average crop yield when average temperature exceeds 25°C
+
+| Year over Year Wheat Change SQL | 
+|---------------------------------|
+| ![Model Evaluation](screenshots/year_over_year_wheat_change_sql.png) | 
+
+
+Example query:
+SELECT
+    Area,
+    AVG("hg/ha_yield") AS Average_Yield
+FROM crop_yield_data
+WHERE Item = 'Maize'
+GROUP BY Area
+ORDER BY Average_Yield DESC
+LIMIT 5;
+
+## Model Development 
+
+Models Evaluated
+* Linear Regression
+* Ridge Regression
+* Lasso Regression
+* Random Forest Regressor
+* Gradient Boosting Regressor
+
+| Model Evaluation | 
+|--------------------|
+| ![Model Evaluation](screenshots/model_comparison.png) | 
+
+Each model was evaluated using cross-validation to ensure generalization performance.
+
+## Final Model Selection
+- Selected Model: Tuned Random Forest Regressor
+- Optimization Method: GridSearchCV with K-Fold cross-validation
+
+| Final Model | 
+|-------------|
+| ![Final Model](screenshots/final_model_selection.png) | 
+
+### Evaluation Metrics
+* R²: 0.98 
+* RMSE: 11266.04 
+* MAE: 4693.75
+
+The selected model provided the best trade-off between bias and variance among evaluated algorithms.
+Model artifacts were serialized using joblib to ensure reproducible inference in the deployed environment.
+
+### Feature Importance Analysis 
+Feature importance was extracted from the final Random Forest model to identify the most influential variables affecting crop yield.
+
+| Feature Importance Chart | 
+|--------------------------|
+| ![Final Model](screenshots/feature_importance_chart.png) | 
+
+This adds interpretability and allows domain insight into key agricultural drivers.
+
+
+## Web Application
+
+The trained model is deployed via Streamlit as an interactive prediction interface.
+
+### User Workflow
+
+#### User Input
+→ Model Inference
+→ Yield Prediction
+→ Output Display
+
+The application loads:
+
+* best_rf_model_tuned.pkl
+* training_columns.pkl
+* Supporting preprocessing artifacts
+
+| User Input | 
+|------------|
+| ![User Input](screenshots/streamlit_app_user_input.png) | 
+
+
+| Prediction Result Output | 
+|--------------------------|
+| ![Prediction Result Output](screenshots/predicted_yield_page.png) | 
+
+
+## Deployment Architecture
+The system architecture has a clean inference pipeline: 
+
+User Interface (Streamlit)
+→ Loaded Serialized Model
+→ Prediction Engine
+→ Real-Time Output
+
+The trained model and required artifacts were serialized using joblib to ensure consistency between training and deployment environments.
+
+Hosted on: Streamlit Cloud
+
+## Project Structure 
+
+.
+├── YieldProductionInsights.ipynb
+
+├── streamlit_app.py
+
+├── requirements.txt
+
+├── best_rf_model_tuned.pkl
+
+├── training_columns.pkl
+
+├── feature_importances.pkl
+
+├── original_df_for_streamlit.pkl
+
+├── per_crop_mean_yield.pkl
+
+├── y_train_mean.pkl
+
+├── y_train_std.pkl
+
+├── yield_df.csv
+
+
+## Run Locally 
+
+### Clone the repository: 
+- git clone https://github.com/rras1205/ml-agriculture-insights.git
+
+### Navigate to the repository: 
+- cd ml-agriculture-insights
+
+### Run streamlit app
+- python -m streamlit run streamlit_app.py
+
+## Technologies Used
+
+* Python
+* pandas
+* scikit-learn
+* matplotlib
+* seaborn
+* Streamlit
+* joblib
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
