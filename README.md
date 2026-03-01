@@ -1,6 +1,10 @@
 # ml-agriculture-insights
 An investigation into the various environmental and management factors influencing crop yield.
 
+## Dataset 
+The dataset that was chosen consists of agricultural records that specifically have key environmental management, as well as production-related factors across the various geographic regions across the years. It makes it relevant to carry out analysis of how the external variables can affect the crop yields over time. 
+
+
 ## Deployed Machine Learning Web App for Crop Yield Prediction 
 An end-to-end machine learning system that predicts agricultural crop yield using cross-validated model comparison and hyperparameter tuning. The final tuned Random Forest model is deployed via Streamlit for inference.
 
