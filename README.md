@@ -2,7 +2,9 @@
 An investigation into the various environmental and management factors influencing crop yield.
 
 ## Dataset 
-The dataset that was chosen consists of agricultural records that specifically have key environmental management, as well as production-related factors across the various geographic regions across the years. It makes it relevant to carry out analysis of how the external variables can affect the crop yields over time. 
+
+The dataset that was chosen consists of agricultural records that specifically have key environmental management (such as 'avg_temp'), as well as production-related factors (such as pesticides_tonnes) across the various geographic regions across the years. It makes it relevant to carry out analysis of how the external variables can affect the crop yields over time. 
+The data is time-series and multiregional, meaning that it covers multiple years and countries and hence makes it suitable for a temporal and spatial trend analysis. 
 
 
 ## Deployed Machine Learning Web App for Crop Yield Prediction 
