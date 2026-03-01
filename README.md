@@ -197,6 +197,36 @@ Hosted on: Streamlit Cloud
 * joblib
 
 
+## Limitations
+
+While the model demonstrates strong predictive performance, several important limitations should be considered.
+
+### Data Scope & Representativeness
+* Model performance depends entirely on the historical dataset used for training.
+* If future agricultural practices, crop varieties, or environmental conditions differ significantly from the training distribution, prediction accuracy may decline.
+* Regions or crop types that are underrepresented in the dataset may not generalize well.
+
+### Feature Constraints
+* The model relies on a limited set of structured inputs (e.g., rainfall, temperature, pesticide usage, year, area, crop type).
+* Important variables such as soil composition, irrigation methods, disease outbreaks, extreme weather events, and socio-economic factors are not included.
+
+### Extrapolation Risk
+* The model is more reliable for interpolation within observed ranges than extrapolation to unseen extreme conditions.
+
+Correlation vs. Causation
+* The model captures statistical associations between features and yield.
+* Feature importance reflects relative predictive contribution, not causal influence.
+* Establishing true causal relationships would require controlled agronomic or experimental study.
+
+Model Complexity & Interpretability
+* The Random Forest algorithm provides strong predictive performance but operates as a relatively opaque model compared to linear regression - difficult to understand how it arrives at its predictions. 
+* Feature importance offers directional insight but does not fully explain individual predictions.
+
+Performance Interpretation & Overfitting Risk
+* Although Random Forest reduces overfitting through ensembling and randomness, it can still overfit if trees are overly deep or if strong location/year signals dominate the dataset.
+* Exceptionally high accuracy may reflect structured patterns within the dataset rather than guaranteed real-world robustness.
+
+
 
 
 
