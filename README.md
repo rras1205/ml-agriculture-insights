@@ -17,7 +17,7 @@ An end-to-end machine learning system that predicts agricultural crop yield usin
 
 | Yield Prediction | Feature Importance |
 |------------------|--------------------|
-| ![Yield Prediction](screenshots/predicted_yield_page.png) | ![Load Preset](screenshots/feature_importance_page.png) |
+| ![Yield Prediction](screenshots/predicted_yield_page.png) | ![Feature Importance](screenshots/feature_importance_page.png) |
 
 
 ## What This Project Demonstrates
