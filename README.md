@@ -48,33 +48,6 @@ Key objectives:
 
 The correlation matrix highlights the strength and direction of relationships between predictors and crop yield, providing insight into feature influence before model training.
 
-## SQL-Based Analytical Layer
-To demonstrate structured data analysis beyond pandas operations, the dataset was loaded into an in-memory SQLite database.
-
-The DataFrame was converted into a relational table (crop_yield_data) and queried using SQL to perform advanced analytical tasks.
-
-### SQL Analyses Performed
-* Null value validation across all columns
-* Distinct counts for categorical variables
-* Top 5 areas with highest average yield for Maize
-* Year-over-year yield change for Wheat in India (using window functions with LAG)
-* Average crop yield when average temperature exceeds 25°C
-
-| Year over Year Wheat Change SQL | 
-|---------------------------------|
-| ![Model Evaluation](screenshots/year_over_year_wheat_change_sql.png) | 
-
-
-Example query:
-SELECT
-    Area,
-    AVG("hg/ha_yield") AS Average_Yield
-FROM crop_yield_data
-WHERE Item = 'Maize'
-GROUP BY Area
-ORDER BY Average_Yield DESC
-LIMIT 5;
-
 ## Model Development 
 
 Models Evaluated
